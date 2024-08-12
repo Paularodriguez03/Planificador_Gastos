@@ -6,6 +6,7 @@ type BudgetContextProps = {
     dispatch: Dispatch<ButgetActions>
     totalExpenses: number
     remaining: number
+    totalExpectedamount: number
 }
 
 type BudgetProviderProps = {
@@ -19,10 +20,11 @@ export const BudgetProvider = ({ children }: BudgetProviderProps) => {
 
     const totalExpenses = useMemo(() => state.expenses.reduce((total, expense) => total + expense.amount, 0), [state.expenses]);
     const remaining = useMemo(() => state.budget - totalExpenses, [state.budget, totalExpenses]);
+    const totalExpectedamount = useMemo(() => state.expenses.reduce((total, expense) => total + expense.expectedamount, 0), [state.expenses]);
 
     return (
         <BudgetContext.Provider
-            value={{ state, dispatch, totalExpenses, remaining }}>
+            value={{ state, dispatch, totalExpenses, remaining, totalExpectedamount}}>
             {children}
         </BudgetContext.Provider>
     )

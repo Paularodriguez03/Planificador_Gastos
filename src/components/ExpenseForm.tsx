@@ -14,6 +14,7 @@ export const ExpenseForm = () => {
     const [expense, setExpense] = useState<DraftExpense>({
         expenseName: '',
         amount: 0,
+        expectedamount: 0,
         category: '',
         date: new Date()
     });
@@ -26,7 +27,7 @@ export const ExpenseForm = () => {
     const handelChange = (e: ChangeEvent<HTMLInputElement | HTMLSelectElement>) => {
         e.preventDefault();
         const { name, value } = e.target;
-        const isAmount = ['amount'].includes(name);
+        const isAmount = ['amount', 'expectedamount'].includes(name);
         setExpense({ ...expense, [name]: isAmount ? +value : value })
     }
 
@@ -65,12 +66,12 @@ export const ExpenseForm = () => {
         setExpense({
             expenseName: '',
             amount: 0,
+            expectedamount: 0,
             category: '',
             date: new Date()
         })
-
         setPreviusAmount(0)
-        
+     
     }
 
     return (
@@ -91,6 +92,19 @@ export const ExpenseForm = () => {
                     onChange={handelChange}
                     value={expense.expenseName}
                 />
+            </div>
+
+            <div className="flex flex-col space-y-2">
+                <label htmlFor="amexpectedamountount" className="text-lg">Cantidad esperada:</label>
+                <input
+                    type="number"
+                    id="expectedamount"
+                    name="expectedamount"
+                    className="w-full bg-white border border-gray-200 p-2 rounded"
+                    placeholder="ej. 300"
+                    onChange={handelChange}
+                    value={expense.expectedamount}
+                    min={0} />
             </div>
 
             <div className="flex flex-col space-y-2">

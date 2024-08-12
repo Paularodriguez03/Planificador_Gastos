@@ -54,7 +54,23 @@ export const ExpenseDetail = ({ expense }: ExpenseDetailProps) => {
                         <p className="text-slate-600 text-sm">{formatDate(expense.date!.toString())}</p>
                     </div>
 
-                    <AmountDisplay amount={expense.amount} />
+                    <div className="flex-1 flex flex-col">
+                        Monto Estimado:
+                        <AmountDisplay amount={expense.expectedamount} />
+                    </div>
+
+                    <div className="flex-1 flex flex-col">
+                        Monto gastado:
+                        <AmountDisplay amount={expense.amount} />
+                    </div>
+
+                    <div className="flex-1 flex flex-col">
+                        Diferencia:
+                        <AmountDisplay amount={expense.expectedamount - expense.amount} />
+                    </div>
+                   
+                    
+
 
                 </div>
             </SwipeableListItem>

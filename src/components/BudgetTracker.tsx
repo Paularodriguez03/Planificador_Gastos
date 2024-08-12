@@ -6,7 +6,7 @@ import { useMemo } from "react";
 
 export const BudgetTracker = () => {
 
-  const { state, dispatch, totalExpenses, remaining } = useBudget();
+  const { state, dispatch, totalExpenses, remaining, totalExpectedamount } = useBudget();
 
   const percentage = useMemo(() => {
     return +((totalExpenses / state.budget) * 100).toFixed(2);
@@ -36,6 +36,7 @@ export const BudgetTracker = () => {
 
         <AmountDisplay label="Presupuesto" amount={state.budget} />
         <AmountDisplay label="Disponible" amount={remaining} />
+        <AmountDisplay label="Monto Estimado" amount={totalExpectedamount} />
         <AmountDisplay label="Gastado" amount={totalExpenses} />
 
       </div>
